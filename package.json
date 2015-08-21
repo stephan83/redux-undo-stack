@@ -1,8 +1,23 @@
 {
   "name": "redux-undo-stack",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Undo stack for redux",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stephan83/redux-undo-stack.git"
+  },
+  "keywords": [
+    "redux",
+    "undo",
+    "stack",
+    "undo stack"
+  ],
+  "author": "Stephan Florquin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stephan83/redux-undo-stack/issues"
+  },
   "scripts": {
     "build:lib": "babel src --out-dir lib",
     "build:umd": "webpack src/index.js dist/redux-undo-stack.js --config webpack.config.js",
@@ -19,21 +34,6 @@
     "test:watch": "npm test -- --watch",
     "test:cov": "babel-node ./node_modules/isparta/bin/isparta cover ./node_modules/mocha/bin/_mocha -- --recursive --require should"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stephan83/redux-undo-stack.git"
-  },
-  "keywords": [
-    "redux",
-    "undo",
-    "stack",
-    "undo stack"
-  ],
-  "author": "Stephan Florquin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/stephan83/redux-undo-stack/issues"
-  },
   "homepage": "https://github.com/stephan83/redux-undo-stack",
   "devDependencies": {
     "babel": "^5.8.21",
@@ -43,7 +43,6 @@
     "eslint": "^1.2.1",
     "eslint-config-airbnb": "0.0.7",
     "eslint-plugin-react": "^3.2.3",
-    "isparta": "^3.0.3",
     "mocha": "^2.2.5",
     "rimraf": "^2.4.2",
     "should": "^7.0.4",
