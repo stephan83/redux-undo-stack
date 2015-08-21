@@ -2,8 +2,17 @@
 
 var path = require('path');
 
-module.exports = {
+var reduxSmartActionExternal = {
+  root: 'ReduxSmartAction',
+  commonjs2: 'redux-smart-action',
+  commonjs: 'redux-smart-action',
+  amd: 'redux-smart-action'
+};
 
+module.exports = {
+  externals: {
+    'redux-smart-action': reduxSmartActionExternal
+  },
   module: {
     loaders: [
       {
