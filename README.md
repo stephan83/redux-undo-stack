@@ -98,7 +98,7 @@ const push = value => new SmartAction(dispatch => {
   }
 });
 
-const pop = value => new SmartAction((dispatch, getState) => {
+const pop = () => new SmartAction((dispatch, getState) => {
   if (dispatch(UndoStackActions.begin('pop')).exec()) {
     if (getState().length) {
       dispatch({type: 'POP', value});
