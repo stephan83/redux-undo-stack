@@ -50,7 +50,7 @@
     "webpack": "^1.11.0"
   },
   "dependencies": {
-    "redux-smart-action": ">=0.1.0",
+    "redux-smart-action": ">=0.2.0",
     "clone": ">=1.0.0"
   },
   "npmName": "redux-undo-stack",
