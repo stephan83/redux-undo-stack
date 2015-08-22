@@ -21,9 +21,6 @@ export default function applyUndoStack(
     switch (action.type) {
 
     case UNDO:
-      if (undoStack.pos < 1) {
-        return state;
-      }
       undoStack.pos--;
       const undo = undoStack.stack[undoStack.pos].undo;
       retValue = state;
@@ -31,9 +28,6 @@ export default function applyUndoStack(
       break;
 
     case REDO:
-      if (undoStack.pos >= undoStack.stack.length) {
-        return state;
-      }
       const redo = undoStack.stack[undoStack.pos].redo;
       undoStack.pos++;
       retValue = state;
@@ -57,8 +51,8 @@ export default function applyUndoStack(
       ];
       undoStack.pos++;
       undoStack.entry = null;
-      if (undoStack.length > cap) {
-        undoStack.shift();
+      if (undoStack.stack.length > cap) {
+        undoStack.stack.shift();
         undoStack.pos--;
       }
       retValue = clone(state);
