@@ -174,7 +174,7 @@ const startEditing = () => new SmartAction(dispatch => {
 });
 
 const edit = value => new SmartAction(dispatch => {
-  dispatch({type: 'EDIT', value}).exec();
+  dispatch({type: 'EDIT', value});
 });
 
 const endEditing = () => new SmartAction(dispatch => {
