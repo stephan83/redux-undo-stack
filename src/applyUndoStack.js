@@ -4,15 +4,14 @@ import { UNDO, REDO, BEGIN, COMMIT, ABORT } from './ActionTypes';
 export default function applyUndoStack(
   reducer,
   createUndoAction,
-  propName = 'undoStack',
   cap = 100
 ) {
   return (state, action) => {
     let undoStack;
     let undoStackUpdated = false;
 
-    if (state && state[propName]) {
-      undoStack = state[propName];
+    if (state && state.undoStack) {
+      undoStack = state.undoStack;
     } else {
       undoStack = {pos: 0, stack: []};
       undoStackUpdated = true;
@@ -109,7 +108,7 @@ export default function applyUndoStack(
       if (retValue === state) {
         retValue = clone(state);
       }
-      retValue[propName] = undoStack;
+      retValue.undoStack = undoStack;
     }
 
     return retValue;

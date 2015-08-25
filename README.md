@@ -58,14 +58,12 @@ import {applyUndoStack} from 'redux-undo-stack';
 const reducerWithUndoStack = applyUndoStack(
   reducer,
   createUndoAction,
-  'undoStack',
   100
 );
 ```
 
-The third argument is the name of the property where the undo stack will be
-stored in the state. The fourth argument is a cap for the size of the undo
-stack. By default they are set to `'undoStack'` and `100`.
+The third argument is a cap for the size of the undo stack. By default it is
+`100`.
 
 Next, you must add the
 [SmartActions](https://github.com/stephan83/redux-smart-action) middleware to

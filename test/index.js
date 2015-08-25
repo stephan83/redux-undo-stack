@@ -36,7 +36,6 @@ const reducerSpy = sinon.spy(reducer);
 const reducerWithUndoStack = applyUndoStack(
   reducerSpy,
   createUndoAction,
-  'undoStack',
   10
 );
 
