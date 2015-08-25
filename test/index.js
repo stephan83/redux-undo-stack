@@ -100,7 +100,7 @@ describe('redux-undo-stack', () => {
     reducerSpy.reset();
   });
 
-  describe('#begin()', () => {
+  describe('begin()', () => {
 
     context('there isn\'t already a transaction', () => {
 
@@ -108,7 +108,7 @@ describe('redux-undo-stack', () => {
         action = store.dispatch(Actions.begin('transaction'));
       });
 
-      context('#canExec', () => {
+      context('canExec', () => {
 
         it('should be true', () => {
           action.canExec.should.be.exactly(true);
@@ -125,7 +125,7 @@ describe('redux-undo-stack', () => {
         action = store.dispatch(Actions.begin('transaction-2'));
       });
 
-      context('#canExec', () => {
+      context('canExec', () => {
 
         it('should be false', () => {
           action.canExec.should.be.exactly(false);
@@ -137,7 +137,7 @@ describe('redux-undo-stack', () => {
 
   });
 
-  describe('#commit()', () => {
+  describe('commit()', () => {
 
     context('there is a transaction', () => {
 
@@ -146,7 +146,7 @@ describe('redux-undo-stack', () => {
         action = store.dispatch(Actions.commit());
       });
 
-      context('#canExec', () => {
+      context('canExec', () => {
 
         it('should be true', () => {
           action.canExec.should.be.exactly(true);
@@ -162,7 +162,7 @@ describe('redux-undo-stack', () => {
         action = store.dispatch(Actions.commit());
       });
 
-      context('#canExec', () => {
+      context('canExec', () => {
 
         it('should be false', () => {
           action.canExec.should.be.exactly(false);
@@ -242,7 +242,7 @@ describe('redux-undo-stack', () => {
 
   });
 
-  describe('#abort()', () => {
+  describe('abort()', () => {
 
     context('there is a transaction', () => {
 
@@ -251,7 +251,7 @@ describe('redux-undo-stack', () => {
         action = store.dispatch(Actions.abort());
       });
 
-      context('#canExec', () => {
+      context('canExec', () => {
 
         it('should be true', () => {
           action.canExec.should.be.exactly(true);
@@ -267,7 +267,7 @@ describe('redux-undo-stack', () => {
         action = store.dispatch(Actions.abort());
       });
 
-      context('#canExec', () => {
+      context('canExec', () => {
 
         it('should be false', () => {
           action.canExec.should.be.exactly(false);
@@ -298,7 +298,7 @@ describe('redux-undo-stack', () => {
 
   context('a single action in a transaction', () => {
 
-    describe('#undo()', () => {
+    describe('undo()', () => {
 
       context('the undo stack is not empty', () => {
 
@@ -360,7 +360,7 @@ describe('redux-undo-stack', () => {
 
     });
 
-    describe('#redo()', () => {
+    describe('redo()', () => {
 
       context('the undo stack is not empty', () => {
 
@@ -424,7 +424,7 @@ describe('redux-undo-stack', () => {
 
   context('mutliple actions in a transaction', () => {
 
-    describe('#undo()', () => {
+    describe('undo()', () => {
 
       beforeEach(() => {
         store.dispatch(beginTransaction()).exec();
@@ -444,7 +444,7 @@ describe('redux-undo-stack', () => {
 
     });
 
-    describe('#redo()', () => {
+    describe('redo()', () => {
 
       beforeEach(() => {
         store.dispatch(beginTransaction()).exec();
