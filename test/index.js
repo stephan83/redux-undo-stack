@@ -102,13 +102,13 @@ describe('redux-undo-stack', () => {
 
   describe('begin()', () => {
 
-    context('there isn\'t already a transaction', () => {
+    context('when there isn\'t already a transaction', () => {
 
       beforeEach(() => {
         action = store.dispatch(Actions.begin('transaction'));
       });
 
-      context('canExec', () => {
+      describe('canExec', () => {
 
         it('should be true', () => {
           action.canExec.should.be.exactly(true);
@@ -118,14 +118,14 @@ describe('redux-undo-stack', () => {
 
     });
 
-    context('there already is a transaction', () => {
+    context('when there already is a transaction', () => {
 
       beforeEach(() => {
         store.dispatch(Actions.begin('transaction-1')).exec();
         action = store.dispatch(Actions.begin('transaction-2'));
       });
 
-      context('canExec', () => {
+      describe('canExec', () => {
 
         it('should be false', () => {
           action.canExec.should.be.exactly(false);
@@ -139,14 +139,14 @@ describe('redux-undo-stack', () => {
 
   describe('commit()', () => {
 
-    context('there is a transaction', () => {
+    context('when there is a transaction', () => {
 
       beforeEach(() => {
         store.dispatch(Actions.begin('transaction')).exec();
         action = store.dispatch(Actions.commit());
       });
 
-      context('canExec', () => {
+      describe('canExec', () => {
 
         it('should be true', () => {
           action.canExec.should.be.exactly(true);
@@ -156,13 +156,13 @@ describe('redux-undo-stack', () => {
 
     });
 
-    context('there isn\'t a transaction', () => {
+    context('when there isn\'t a transaction', () => {
 
       beforeEach(() => {
         action = store.dispatch(Actions.commit());
       });
 
-      context('canExec', () => {
+      describe('canExec', () => {
 
         it('should be false', () => {
           action.canExec.should.be.exactly(false);
@@ -172,11 +172,11 @@ describe('redux-undo-stack', () => {
 
     });
 
-    context('an action commits', () => {
+    context('when an action commits', () => {
 
-      context('undo stack position is the head', () => {
+      context('if undo stack position is the head', () => {
 
-        context('undo stack isn\'t capped', () => {
+        context('and undo stack isn\'t capped', () => {
 
           beforeEach(() => {
             action = store.dispatch(push(1));
@@ -193,7 +193,7 @@ describe('redux-undo-stack', () => {
 
         });
 
-        context('undo stack is capped', () => {
+        context('and undo stack is capped', () => {
 
           beforeEach(() => {
             for (let i = 0; i < 10; i++) {
@@ -216,7 +216,7 @@ describe('redux-undo-stack', () => {
 
       });
 
-      context('undo stack position isn\' the head', () => {
+      context('if undo stack position isn\'t the head', () => {
 
         beforeEach(() => {
           store.dispatch(push(1)).exec();
@@ -244,7 +244,7 @@ describe('redux-undo-stack', () => {
 
   describe('abort()', () => {
 
-    context('there is a transaction', () => {
+    context('when there is a transaction', () => {
 
       beforeEach(() => {
         store.dispatch(Actions.begin('transaction')).exec();
@@ -261,7 +261,7 @@ describe('redux-undo-stack', () => {
 
     });
 
-    context('there isn\'t a transaction', () => {
+    context('when there isn\'t a transaction', () => {
 
       beforeEach(() => {
         action = store.dispatch(Actions.abort());
@@ -277,7 +277,7 @@ describe('redux-undo-stack', () => {
 
     });
 
-    context('an action aborts', () => {
+    context('when an action aborts', () => {
 
       beforeEach(() => {
         action = store.dispatch(pop());
@@ -296,18 +296,18 @@ describe('redux-undo-stack', () => {
 
   });
 
-  context('a single action in a transaction', () => {
+  context('with a single action in a transaction', () => {
 
     describe('undo()', () => {
 
-      context('the undo stack is not empty', () => {
+      context('when the undo stack is not empty', () => {
 
         beforeEach(() => {
           store.dispatch(push(1)).exec();
           reducerSpy.reset();
         });
 
-        context('undo stack position is positive', () => {
+        context('if undo stack position is positive', () => {
 
           beforeEach(() => {
             action = store.dispatch(Actions.undo());
@@ -328,7 +328,7 @@ describe('redux-undo-stack', () => {
 
         });
 
-        context('undo stack position is zero', () => {
+        context('if undo stack position is zero', () => {
 
           beforeEach(() => {
             store.dispatch(Actions.undo()).exec();
@@ -345,7 +345,7 @@ describe('redux-undo-stack', () => {
 
       });
 
-      context('the undo stack is empty', () => {
+      context('when the undo stack is empty', () => {
 
         beforeEach(() => {
           action = store.dispatch(Actions.undo());
@@ -362,14 +362,14 @@ describe('redux-undo-stack', () => {
 
     describe('redo()', () => {
 
-      context('the undo stack is not empty', () => {
+      context('when the undo stack is not empty', () => {
 
         beforeEach(() => {
           store.dispatch(push(1)).exec();
           reducerSpy.reset();
         });
 
-        context('undo stack position is not the head', () => {
+        context('if undo stack position is not the head', () => {
 
           beforeEach(() => {
             store.dispatch(Actions.undo()).exec();
@@ -390,7 +390,7 @@ describe('redux-undo-stack', () => {
 
         });
 
-        context('undo stack position the head', () => {
+        context('if undo stack position the head', () => {
 
           beforeEach(() => {
             action = store.dispatch(Actions.redo());
@@ -405,7 +405,7 @@ describe('redux-undo-stack', () => {
 
       });
 
-      context('the undo stack is empty', () => {
+      context('when the undo stack is empty', () => {
 
         beforeEach(() => {
           action = store.dispatch(Actions.redo());
@@ -422,7 +422,7 @@ describe('redux-undo-stack', () => {
 
   });
 
-  context('mutliple actions in a transaction', () => {
+  context('with mutliple actions in a transaction', () => {
 
     describe('undo()', () => {
 
@@ -470,7 +470,7 @@ describe('redux-undo-stack', () => {
 
   });
 
-  context('an action that isn\'t undoable', () => {
+  context('with an action that isn\'t undoable', () => {
 
     beforeEach(() => {
       store.dispatch(passThrough());
