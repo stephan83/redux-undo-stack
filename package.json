@@ -1,6 +1,6 @@
 {
   "name": "redux-undo-stack",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Undo stack for redux",
   "main": "lib/index.js",
   "repository": {
