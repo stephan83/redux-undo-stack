@@ -5,7 +5,7 @@ import {
   smartActionMiddleware,
   applySmartMiddleware
 } from 'redux-smart-action';
-import { Actions, applyUndoStack } from '../src';
+import { Actions, applyUndoStack, getUndoDesc, getRedoDesc } from '../src';
 
 function reducer(state = [], action) {
   switch (action.type) {
@@ -308,21 +308,34 @@ describe('redux-undo-stack', () => {
 
         context('if undo stack position is positive', () => {
 
-          beforeEach(() => {
-            action = store.dispatch(Actions.undo());
-            action.exec();
+          context('before', () => {
+            it('should have an undo description', () => {
+              getUndoDesc(store.getState()).should.be.exactly('push');
+            });
           });
 
-          it('should invoke the reducer', () => {
-            reducerSpy.callCount.should.be.exactly(2);
-          });
+          context('after', () => {
+            beforeEach(() => {
+              action = store.dispatch(Actions.undo());
+              action.exec();
+            });
 
-          it('should invoke the reducer with the opposite action', () => {
-            reducerSpy.secondCall.args[1].type.should.be.exactly('POP');
-          });
+            it('should have an redo description', () => {
+              getRedoDesc(store.getState()).should.be.exactly('push');
+            });
 
-          it('works', () => {
-            store.getState().length.should.be.exactly(0);
+            it('should invoke the reducer', () => {
+              reducerSpy.callCount.should.be.exactly(2);
+            });
+
+            it('should invoke the reducer with the opposite action', () => {
+              reducerSpy.secondCall.args[1].type.should.be.exactly('POP');
+            });
+
+            it('works', () => {
+              store.getState().length.should.be.exactly(0);
+            });
+
           });
 
         });

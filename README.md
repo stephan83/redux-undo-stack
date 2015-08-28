@@ -149,6 +149,17 @@ console.log(store.getState()); // [1]
 
 As you can see, you undo commands with `undo()` and redo commands with `redo()`.
 
+### Utils
+
+You can get undo and redo description with `getUndoDesc()` and `getRedoDesc()`:
+
+```js
+import { getUndoDesc, getRedoDesc } from 'redux-undo-stack';
+
+console.log(getUndoDesc(store.getState()));
+console.log(getRedoDesc(store.getState()));
+```
+
 ### Advanced usage
 
 You can begin a command in one action, end it in another action, and
