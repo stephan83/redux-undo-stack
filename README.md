@@ -33,7 +33,9 @@ function reducer(state = [], action) {
 
 You must write a function that creates an undo action from a state and an action
 about to be executed on that state. If the action isn't undoable, it should
-just return `null`.
+just return `null`. As of `v1.1.0` the function can also take a third
+parameter which is the state after the action is executed, which is helpful
+in some cases.
 
 For our stack store:
 

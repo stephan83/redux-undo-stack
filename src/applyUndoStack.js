@@ -94,7 +94,7 @@ export default function applyUndoStack(
     default:
       retValue = reducer(state, action);
       if (undoStack.entry) {
-        const undoAction = createUndoAction(state, action);
+        const undoAction = createUndoAction(state, action, retValue);
         if (undoAction) {
           undoStack = clone(undoStack);
           undoStackUpdated = true;
